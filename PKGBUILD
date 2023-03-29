@@ -1,6 +1,6 @@
 # This is not on the AUR.  It is loosely based on the 'emacs-git'
 # package found there.  It is highly opinionated to only use stuff I
-# need (or most will most likely need).
+# need (or will most likely need).
 #
 # Package maintainer: Protesilaos Stavrou <info@protesilaos.com>
 #
