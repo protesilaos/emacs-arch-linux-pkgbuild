@@ -24,3 +24,14 @@ PKGBUILD and then `pacman` does the rest.
 Use that.  I have not tested this thoroughly and do not recommend you
 try it.  I simply wrote it as a way to learn how Emacs is built and
 ultimately particularise my configuration of it.
+
+## Sources
+
++ Git repo on SourceHut: <https://git.sr.ht/~protesilaos/emacs-arch-linux-pkgbuild>
+  - Mirrors:
+    + GitHub: <https://github.com/protesilaos/emacs-arch-linux-pkgbuild>
+    + GitLab: <https://gitlab.com/protesilaos/emacs-arch-linux-pkgbuild>
++ Mailing list: <https://lists.sr.ht/~protesilaos/general-issues>
++ Backronym for "PKGBUILD ... of Emacs": Package Knowhow Germane to
+  Building Unapologetically Individuated Local Deployments ... of
+  Emacs.
