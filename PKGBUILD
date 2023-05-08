@@ -93,7 +93,6 @@ build()
         --without-selinux
         --without-gconf
         --with-native-compilation=yes
-        --with-xaw3d
 		--with-cairo
 		--with-harfbuzz
         --with-sound=no
