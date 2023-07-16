@@ -36,7 +36,7 @@
 
 
 pkgname="emacs-git"
-pkgver=30.0.50.166130
+pkgver=30.0.50.166983
 pkgrel=1
 pkgdesc="GNU Emacs.  Current development target."
 arch=('x86_64')
@@ -83,12 +83,10 @@ build()
         --without-gif
         --without-tiff
         --without-rsvg
-        # --without-modules
         --without-gsettings
         --without-xinput2
         --without-compress-install
         --without-toolkit-scroll-bars
-        --without-xaw3d
         --without-gpm
         --without-selinux
         --without-gconf
@@ -98,6 +96,7 @@ build()
         --with-sound=no
         --with-tree-sitter
 		--with-json
+        --with-xaw3d
         --with-x-toolkit=lucid
     )
 
