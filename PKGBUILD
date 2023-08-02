@@ -38,7 +38,7 @@
 pkgname="emacs-git"
 pkgver=30.0.50.166983
 pkgrel=1
-pkgdesc="GNU Emacs.  Current development target."
+pkgdesc="GNU Emacs.  Custom build of current development target."
 arch=('x86_64')
 url="http://www.gnu.org/software/emacs/"
 license=('GPL3')
