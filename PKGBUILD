@@ -36,13 +36,31 @@
 
 
 pkgname="emacs-git"
-pkgver=30.0.50.166983
+pkgver=30.0.50.167034
 pkgrel=1
 pkgdesc="GNU Emacs.  Custom build of current development target."
 arch=('x86_64')
 url="http://www.gnu.org/software/emacs/"
 license=('GPL3')
-depends=('harfbuzz' 'libgccjit' 'dbus' 'hicolor-icon-theme' 'libxinerama' 'libxfixes' 'lcms2' 'xaw3d' 'libxrandr' 'libxi' 'libsm' 'xcb-util' 'libxcb' 'cairo' 'tree-sitter' 'sqlite3')
+depends=(
+    'cairo'
+    'dbus'
+    'harfbuzz'
+    'hicolor-icon-theme'
+    'lcms2'
+    'libgccjit'
+    'librsvg'
+    'libsm'
+    'libxcb'
+    'libxfixes'
+    'libxi'
+    'libxinerama'
+    'libxrandr'
+    'sqlite3'
+    'tree-sitter'
+    'xaw3d'
+    'xcb-util'
+)
 makedepends=('git')
 provides=('emacs')
 conflicts=('emacs')
@@ -82,7 +100,6 @@ build()
         --mandir=/usr/share/man
         --without-gif
         --without-tiff
-        --without-rsvg
         --without-gsettings
         --without-xinput2
         --without-compress-install
