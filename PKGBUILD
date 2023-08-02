@@ -58,7 +58,6 @@ depends=(
     'libxrandr'
     'sqlite3'
     'tree-sitter'
-    'xaw3d'
     'xcb-util'
 )
 makedepends=('git')
@@ -98,22 +97,27 @@ build()
         --libexecdir=/usr/lib
         --localstatedir=/var
         --mandir=/usr/share/man
-        --without-gif
-        --without-tiff
-        --without-gsettings
+        # General settings
         --without-xinput2
         --without-compress-install
-        --without-toolkit-scroll-bars
         --without-gpm
         --without-selinux
-        --without-gconf
         --with-native-compilation=yes
+        --with-sound=no
+        # Image settings
+        --without-gif
+        --without-tiff
+        # Font settings
 		--with-cairo
 		--with-harfbuzz
-        --with-sound=no
+        # Editor settings
         --with-tree-sitter
 		--with-json
-        --with-xaw3d
+        # Toolkit settings
+        --without-gsettings
+        --without-gconf
+        --without-toolkit-scroll-bars
+        --without-xaw3d
         --with-x-toolkit=lucid
     )
 
