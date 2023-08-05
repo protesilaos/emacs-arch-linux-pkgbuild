@@ -33,5 +33,4 @@ ultimately particularise my configuration of it.
     + GitLab: <https://gitlab.com/protesilaos/emacs-arch-linux-pkgbuild>
 + Mailing list: <https://lists.sr.ht/~protesilaos/general-issues>
 + Backronym for "PKGBUILD ... of Emacs": Package Knowhow Germane to
-  Building Unapologetically Individuated Local Deployments ... of
-  Emacs.
+  Building Unapologetically Individuated Local Design ... of Emacs.
