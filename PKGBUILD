@@ -1,8 +1,8 @@
+# Maintainer: Protesilaos Stavrou <info@protesilaos.com>
+
 # This is not on the AUR.  It is loosely based on the 'emacs-git'
 # package found there.  It is highly opinionated to only use stuff I
 # need (or will most likely need).
-#
-# Package maintainer: Protesilaos Stavrou <info@protesilaos.com>
 #
 # About the choice of font backend, read this from the NEWS file of
 # Emacs 28:
@@ -36,7 +36,7 @@
 
 
 pkgname="emacs-git"
-pkgver=30.0.50.167034
+pkgver=30.0.50.168242
 pkgrel=1
 pkgdesc="GNU Emacs.  Custom build of current development target."
 arch=('x86_64')
@@ -111,7 +111,7 @@ build()
 		--with-cairo
 		--with-harfbuzz
         # Editor settings
-        --with-tree-sitter
+        --with-tree-sitter=ifavailable
 		--with-json
         # Toolkit settings
         --without-gsettings
