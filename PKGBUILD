@@ -34,9 +34,10 @@
 #     available, and this is the Cairo graphics library + HarfBuzz for font
 #     shaping, so 'configure' now recommends that combination.
 
+_wayland="YES" # NO = Lucid, YES = Pure GTK, NOX = No X
 
 pkgname="emacs-git"
-pkgver=30.0.50.168242
+pkgver=30.0.50.170023
 pkgrel=1
 pkgdesc="GNU Emacs.  Custom build of current development target."
 arch=('x86_64')
@@ -47,25 +48,83 @@ depends=(
     'dbus'
     'harfbuzz'
     'hicolor-icon-theme'
-    'lcms2'
     'libgccjit'
     'librsvg'
     'libsm'
     'libxcb'
-    'libxfixes'
-    'libxi'
-    'libxinerama'
-    'libxrandr'
     'sqlite3'
     'tree-sitter'
     'xcb-util'
 )
-makedepends=('git')
+makedepends=('git' 'libxi' 'xorgproto')
+
+_flags=(
+    --prefix=/usr
+    --sysconfdir=/etc
+    --libexecdir=/usr/lib
+    --localstatedir=/var
+    --mandir=/usr/share/man
+    # General settings
+    --without-xinput2
+    --without-compress-install
+    --without-gpm
+    --without-selinux
+    --with-native-compilation=yes
+    --with-sound=no
+    # Image settings
+    --without-gif
+    --without-tiff
+    # Font settings
+	--with-cairo
+	--with-harfbuzz
+    # Editor settings
+    --with-tree-sitter=ifavailable
+	--with-json
+    # Toolkit settings
+    --without-gsettings
+    --without-gconf
+)
+
+if [ "$_wayland" = "YES" ]
+then
+    depends+=(
+        'gtk3'
+    );
+    _flags+=(
+        '--with-pgtk'
+    );
+elif [ "$_wayland" = "NOX" ]
+then
+    depends+=(
+        'gnutls'
+        'libxml2'
+        'jansson'
+    );
+    _flags+=(
+        '--with-x-toolkit=no'
+        '--without-toolkit-scroll-bars'
+        '--without-xft'
+        '--without-xaw3d'
+    );
+else
+    depends+=(
+        'lcms2'
+        'libxfixes'
+        'libxinerama'
+        'libxrandr'
+    );
+    _flags+=(
+        '--with-x-toolkit=lucid'
+        '--without-toolkit-scroll-bars'
+        '--without-xft'
+        '--without-xaw3d'
+    );
+fi
+
 provides=('emacs')
 conflicts=('emacs')
 source=("emacs-git::git+https://git.savannah.gnu.org/git/emacs.git")
 options=(!strip)
-install=emacs-git.install
 b2sums=('SKIP')
 
 pkgver()
@@ -90,38 +149,7 @@ prepare()
 build()
 {
     cd "$srcdir/emacs-git/build"
-
-    local _conf=(
-        --prefix=/usr
-        --sysconfdir=/etc
-        --libexecdir=/usr/lib
-        --localstatedir=/var
-        --mandir=/usr/share/man
-        # General settings
-        --without-xinput2
-        --without-compress-install
-        --without-gpm
-        --without-selinux
-        --with-native-compilation=yes
-        --with-sound=no
-        # Image settings
-        --without-gif
-        --without-tiff
-        # Font settings
-		--with-cairo
-		--with-harfbuzz
-        # Editor settings
-        --with-tree-sitter=ifavailable
-		--with-json
-        # Toolkit settings
-        --without-gsettings
-        --without-gconf
-        --without-toolkit-scroll-bars
-        --without-xaw3d
-        --with-x-toolkit=lucid
-    )
-
-    ../configure "${_conf[@]}"
+    ../configure "${_flags[@]}"
     make
 }
 
@@ -139,4 +167,13 @@ package()
     chmod 775 "$pkgdir"/var/games
     chmod 775 "$pkgdir"/var/games/emacs
     chown -R root:games "$pkgdir"/var/games
+}
+
+post_install() {
+    # fix user/root permissions on usr/share files
+    find "$pkgdir"/usr/share/emacs/ | xargs chown root:root
+    # make sure directory has the correct owner and group
+    chown -R root:games "$pkgdir"/var/games
+    # Remove all desktop files beside the main one
+    find "$pkgdir"/usr/share/emacs/ -regex '.*\(emacsclient\|emacs-mail\).*\.desktop' -print0 | xargs -r0 rm
 }
