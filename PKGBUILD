@@ -123,7 +123,8 @@ fi
 
 provides=('emacs')
 conflicts=('emacs')
-source=("emacs-git::git+https://git.savannah.gnu.org/git/emacs.git")
+# source=("emacs-git::git+https://git.savannah.gnu.org/git/emacs.git")
+source=("emacs-git::git+https://github.com/emacs-mirror/emacs.git")
 options=(!strip)
 b2sums=('SKIP')
 
