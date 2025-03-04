@@ -36,8 +36,17 @@
 
 _wayland="NOX" # NO = Lucid, YES = Pure GTK, NOX = No X
 
-pkgname="emacs-git"
-pkgver=30.0.50.170054
+if [[ "$_wayland" == "YES" ]]
+then
+    pkgname="prot-emacs-pgtk-git"
+elif [[ "$_wayland" == "NO" ]]
+then
+    pkgname="prot-emacs-lucid-git"
+else
+    pkgname="prot-emacs-nox-git"
+fi
+
+pkgver=31.0.50.1
 pkgrel=1
 pkgdesc="GNU Emacs. Prot's custom build of current development target."
 arch=('x86_64')
