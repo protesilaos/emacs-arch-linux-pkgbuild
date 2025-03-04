@@ -39,7 +39,7 @@ _wayland="NOX" # NO = Lucid, YES = Pure GTK, NOX = No X
 pkgname="emacs-git"
 pkgver=30.0.50.170054
 pkgrel=1
-pkgdesc="GNU Emacs.  Custom build of current development target."
+pkgdesc="GNU Emacs. Prot's custom build of current development target."
 arch=('x86_64')
 url="http://www.gnu.org/software/emacs/"
 license=('GPL3')
